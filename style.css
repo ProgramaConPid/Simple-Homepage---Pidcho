@@ -1,0 +1,345 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-color: #F2F9FE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, span {
+  transition: color 300ms ease;
+}
+
+.main, .nav {
+  width: 95%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* Seccion de Navegación */
+.nav {
+  height: 100px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__icon {
+  height: 30px;
+  width: 150px;
+  background-image: url('/svg/alarado-icon-homepage.svg');
+  background-repeat: no-repeat;
+}
+
+#icon__bars {
+  height: 60px;
+  width: 60px;
+  background-image: url(/svg/close.svg);
+  display: none;
+  color: #223344;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 100;
+  transition: color 400ms ease;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav__links li a {
+  color: #909193;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: .1rem;
+  transition: color 400ms ease;
+}
+
+.nav__links li a:hover {
+  color: #223344;
+}
+
+.toggle-switch-button-responsive {
+  display: none;
+}
+
+.toggle-switch-button {
+  display: flex;
+}
+
+.toggle-switch-button label, .toggle-switch-button-responsive label {
+  position: relative;
+  height: 30px;
+  width: 70px;
+  background-color: #223344;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 400ms ease;
+}
+
+label::before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  background-color: white;
+  transition: all 400ms ease;
+}
+
+#sun, #moon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 400ms ease;
+}
+
+#moon {
+  right: 7px;
+  color: white;
+}
+
+#sun {
+  left: 7px; 
+  color: #223344;
+}
+
+#check {
+  display: none;
+}
+
+/* ! Uso de pseudoclase :has() para crear las animaciones sin necesidad de usar JavaScript o mas lineas de CSS */
+:has(:checked) #sun {
+  color: white;
+}
+
+:has(:checked) #moon {
+  color: #223344;
+}
+
+:has(:checked) .nav__icon {
+  background-image: url('/svg/alardo-icon-homepage-white.svg');
+}
+
+:has(:checked) .nav__links  li a:hover {
+  color: white;
+}
+
+:has(:checked) label::before {
+  left: 42px;
+}
+
+:has(:checked) body {
+  background-color: #111729;
+}
+
+:has(:checked) h1,
+:has(:checked) span {
+  color: white !important;
+}
+
+/* Contenido principal */
+.main__content {
+  padding-top: 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Seccion Hero - Texto */
+.hero__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__text span {
+  color: #223344;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hero__text .hero__title {
+  text-wrap: balance;
+  color: #223344;
+  margin: 1rem 0 1.5rem 0;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+}
+
+.hero__text .hero__paragraph {
+  color: #909193;
+  font-size: 20px;
+}
+
+.hero__text .hero__buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.hero__buttons .btn {
+  color: white;
+  background-color: #2A4DD0;
+  display: inline-block;
+  font-size: 20px;
+  padding: 15px 25px;
+  border-radius: .8rem;
+  border: none;
+  cursor: pointer;
+}
+
+.hero__buttons .no-background {
+  padding: 0;
+  color: #2A4DD0;
+  align-self: center;
+  background-color: transparent;
+  text-decoration: underline #2A4DD0 2px;
+}
+
+.hero__benefits {
+  color: #909193;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hero__benefits div {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.hero__benefits div img {
+  margin-right: .5rem;
+}
+
+/* Secion Hero - Imagen */
+.hero__img {
+  display: grid;
+  place-items: center;
+}
+
+.hero__img img {
+  display: block;
+  max-height: 500px;
+  width: 650px;
+  margin: auto;
+}
+
+/* Media Queries Monitor o Pantallas grandes */
+@media (width > 1400px) {
+  .hero__text .hero__title {
+    font-size: 5rem;
+  }
+
+  .hero__text {
+    width: 40%;
+  }
+
+  .hero__img {
+    width: 45%;
+  }
+
+  .hero__img img {
+    width: 100%;
+  }
+}
+
+/* Media Queries para tablets */
+@media (width < 1024px) {
+  .main__content {
+    flex-direction: column;
+  }
+
+  .hero__img {
+    order: -1;
+  }
+}
+
+/* Media Queries para algunas tablets y moviles */
+@media (width < 768px) {
+  .nav__links {
+    width: 100%;
+    padding-block: 30px;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F2F9FE;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 500ms ease;
+  }
+
+  .active {
+    opacity: 1;
+    pointer-events: unset;
+  }
+
+  .nav__links li a {
+    font-size: clamp(1rem, 7vw, 3rem);
+    color: #909193;
+  }
+
+  .toggle-switch-button-responsive {
+    display: flex;
+  }
+
+  .toggle-switch-button {
+    display: none;
+  }
+
+  #icon__bars {
+    display: block;
+  }
+
+  :has(:checked) #icon__bars {
+    color: white;
+  }
+
+  :has(:checked) .nav__links {
+    background-color: #111729;
+  }
+
+  :has(:checked) .nav__links  li a {
+    color: #909193;
+  }
+
+  .main__content {
+    padding-top: 20%;
+    padding-bottom: 15%;
+  }
+
+  .hero__text {
+    text-align: center;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__benefits {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__img img {
+    width: 90%;
+  }
+}
